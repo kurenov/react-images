@@ -889,12 +889,15 @@ var Portal = function (_Component) {
 						null,
 						styles
 					),
-					React__default.createElement(reactTransitionGroup.CSSTransitionGroup, _extends({
-						component: 'div',
-						transitionName: 'fade',
-						transitionEnterTimeout: duration,
-						transitionLeaveTimeout: duration
-					}, this.props))
+					React__default.createElement(
+						reactTransitionGroup.TransitionGroup,
+						this.props,
+						React__default.createElement(
+							reactTransitionGroup.CSSTransition,
+							{ timeout: { enter: duration, exit: duration }, classNames: 'fade' },
+							this.props.children
+						)
+					)
 				)
 			), this.portalElement);
 		}

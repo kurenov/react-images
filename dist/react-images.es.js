@@ -3,7 +3,7 @@ import React, { Children, Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import ScrollLock from 'react-scrolllock';
 import { StyleSheet as StyleSheet$1, css as css$1 } from 'aphrodite/no-important';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { render, unmountComponentAtNode } from 'react-dom';
 
 // ==============================
@@ -887,12 +887,15 @@ var Portal = function (_Component) {
 						null,
 						styles
 					),
-					React.createElement(CSSTransitionGroup, _extends({
-						component: 'div',
-						transitionName: 'fade',
-						transitionEnterTimeout: duration,
-						transitionLeaveTimeout: duration
-					}, this.props))
+					React.createElement(
+						TransitionGroup,
+						this.props,
+						React.createElement(
+							CSSTransition,
+							{ timeout: { enter: duration, exit: duration }, classNames: 'fade' },
+							this.props.children
+						)
+					)
 				)
 			), this.portalElement);
 		}
